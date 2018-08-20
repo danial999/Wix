@@ -15,10 +15,18 @@ class Image extends React.Component {
     this.state = {
       size: 200
     };
-    this.state = {filter: 0};
-    this.state = {copy: 1};
+    this.ExpandV = this.ExpandV.bind(this);
+     this.CloseExpand = this.CloseExpand.bind(this);
+    
+    this.state = {full: 0};
     this.RandFilter = this.RandFilter.bind(this);
+    this.state = {filter: 0};
     this.Duplicate = this.Duplicate.bind(this);
+    this.state = {copy: 1};
+   
+    
+ 
+    
   }
 
   calcImageSize() {
@@ -49,6 +57,18 @@ class Image extends React.Component {
     this.setState({
       copy: this.state.copy + 1
     });
+  }
+  ExpandV() {
+     this.setState({
+      full:1
+    });
+
+  }
+  CloseExpand() {
+     this.setState({
+      full:0
+    });
+
   }
   
   render() {
@@ -86,10 +106,11 @@ class Image extends React.Component {
         <div>
           <FontAwesome className="image-icon" name="clone" title="clone" onClick={this.Duplicate}/>
           <FontAwesome className="image-icon" name="filter" title="filter" onClick={this.RandFilter}/>
-          <FontAwesome className="image-icon" name="expand" title="expand"/>
+          <FontAwesome className="image-icon" name="expand" title="expand" onClick={this.ExpandV}/>
         </div>
       </div>
       );
+
 
       
       for (var i = 0; i < this.state.copy; i += 1) {
@@ -100,7 +121,17 @@ class Image extends React.Component {
     return (
       <div style={{display:'inline-block'}}>
        {children}
+       <div id="myModal2" className="modal2" style={{display:  this.state.full ? 'block' : 'none' }}>
+       <span className="closeimg"  onClick={this.CloseExpand}>×</span>
+       <img style={{
+          backgroundImage: `url(${this.urlFromDto(this.props.dto)})`,
+          width: 60 + '%',
+          height: 60 + '%'
+        }}></img>
+      
+        </div>
          </div>
+         
       
     );
   }
