@@ -48,3 +48,25 @@
   }
 }
 
+
+.RandF1 {
+  -webkit-filter: blur(5px); /* Safari */
+  filter: blur(5px);
+}
+.RandF2 {
+  -webkit-filter: brightness(200%); /* Safari */
+  filter: brightness(200%);
+}
+.RandF3 {
+  -webkit-filter: contrast(200%); /* Safari */
+  filter: contrast(200%);
+}
+.RandF4 {
+  -webkit-filter: drop-shadow(8px 8px 10px gray); /* Safari */
+  filter: drop-shadow(8px 8px 10px gray);
+}
+.RandF5 {
+ -webkit-filter: grayscale(50%); /* Safari */
+  filter: grayscale(50%);
+}
+

@@ -15,6 +15,8 @@ class Image extends React.Component {
     this.state = {
       size: 200
     };
+    this.state = {filter: 0};
+    this.RandFilter = this.RandFilter.bind(this);
   }
 
   calcImageSize() {
@@ -34,11 +36,40 @@ class Image extends React.Component {
   urlFromDto(dto) {
     return `https://farm${dto.farm}.staticflickr.com/${dto.server}/${dto.id}_${dto.secret}.jpg`;
   }
+  
+  //set state random number 
+  RandFilter() {
+    var rand=Math.floor(Math.random() * 5) + 1  
+    this.setState({filter: rand});
+  }
 
   render() {
+    //Add basic class and add random class on filter click 
+    let classes = 'image-root ';
+   
+    switch (this.state.filter) {
+    case 0:
+        break;
+    case 1:
+        classes += ' RandF1';
+        break;
+    case 2:
+         classes += ' RandF2';
+        break;
+    case 3:
+         classes += ' RandF3';
+        break;
+    case 4:
+         classes += ' RandF4';
+        break;
+    case 5:
+         classes += ' RandF5';
+        break;
+}
     return (
+      
       <div
-        className="image-root"
+        className={classes}
         style={{
           backgroundImage: `url(${this.urlFromDto(this.props.dto)})`,
           width: this.state.size + 'px',
@@ -46,8 +77,8 @@ class Image extends React.Component {
         }}
         >
         <div>
-          <FontAwesome className="image-icon" name="clone" title="clone"/>
-          <FontAwesome className="image-icon" name="filter" title="filter"/>
+          <FontAwesome className="image-icon" name="clone" title="clone" onClick={this.Duplicate}/>
+          <FontAwesome className="image-icon" name="filter" title="filter" onClick={this.RandFilter}/>
           <FontAwesome className="image-icon" name="expand" title="expand"/>
         </div>
       </div>
